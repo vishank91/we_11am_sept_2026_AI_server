@@ -1,15 +1,18 @@
 const mongoose = require("mongoose")
 
-const TextSchema = new mongoose.Schema({
+const ImageSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    title: {
+    prompt: {
         type: String,
         default: ""
     },
-    chat: []
+    image: {
+        type: String,
+        default: ""
+    }
 }, { timestamps: true })
-const Text = new mongoose.model("Text", TextSchema)
-module.exports = Text
+const Image = new mongoose.model("Image", ImageSchema)
+module.exports = Image
