@@ -55,14 +55,14 @@ async function createRecord(req, res) {
 
 async function getRecord(req, res) {
     try {
-        let data = await Text.find({ user: req.params._id }).sort({ _id: -1 })
+        let data = await Image.find({ user: req.params._id }).sort({ _id: -1 })
         res.send({
             result: "Done",
             count: data.length,
             data: data
         })
     } catch (error) {
-        // console.log(error)
+        console.log(error)
         res.status(500).send({
             result: "Fail",
             reason: "Internal Server Error"
@@ -73,7 +73,7 @@ async function getRecord(req, res) {
 
 async function deleteRecord(req, res) {
     try {
-        let data = await Text.findOne({ _id: req.params._id })
+        let data = await Image.findOne({ _id: req.params._id })
         if (data) {
             await data.deleteOne()
         }
