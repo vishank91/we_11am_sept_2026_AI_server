@@ -1,5 +1,5 @@
 const TextRouter = require("express").Router()
-
+const { verifyUser } = require("../middleware/auth.middleware")
 const {
     createRecord,
     getRecord,
@@ -7,9 +7,9 @@ const {
     deleteRecord,
 } = require("../controllers/text.controller")
 
-TextRouter.post("/", createRecord)
-TextRouter.get("/:_id", getRecord)
-TextRouter.put("/:_id", updateRecord)
-TextRouter.delete("/:_id", deleteRecord)
+TextRouter.post("/",verifyUser, createRecord)
+TextRouter.get("/:_id",verifyUser, getRecord)
+TextRouter.put("/:_id",verifyUser, updateRecord)
+TextRouter.delete("/:_id",verifyUser, deleteRecord)
 
 module.exports = TextRouter

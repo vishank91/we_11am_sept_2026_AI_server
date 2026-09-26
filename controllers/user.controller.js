@@ -2,6 +2,7 @@ const User = require("../models/user.models")
 
 const passwordValidator = require('password-validator');
 const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
 const schema = new passwordValidator();
 
@@ -172,8 +173,11 @@ async function login(req, res) {
         })
         if (data) {
             if (await bcrypt.compare(req.body.password, data.password)) {
+                let token = jwt.sign({ data }, process.env.JWT_SECRET_KEY, { expiresIn: "15 days" })
                 res.send({
-                    result: "Done"
+                    result: "Done",
+                    data: data,
+                    token: token
                 })
             }
             else {

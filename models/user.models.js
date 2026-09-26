@@ -27,6 +27,15 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: 'User'
     },
+    pricing: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Pricing",
+        default: null
+    },
+    planStats: {
+        type: Object,
+        default: {}
+    },
     status: {
         type: Boolean,
         default: true
