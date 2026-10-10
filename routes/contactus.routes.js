@@ -1,5 +1,5 @@
 const ContactUsRouter = require("express").Router()
-const { verifyPublic, verifyAdmin, verifySuperAdmin } = require("../middleware/auth.middleware")
+const { verifyAdmin, verifySuperAdmin } = require("../middleware/auth.middleware")
 const {
     createRecord,
     getRecord,
@@ -8,7 +8,7 @@ const {
     deleteRecord
 } = require("../controllers/contactus.controller")
 
-ContactUsRouter.post("", verifyPublic, createRecord)
+ContactUsRouter.post("", createRecord)
 ContactUsRouter.get("", verifyAdmin, getRecord)
 ContactUsRouter.get("/:_id", verifyAdmin, getSingleRecord)
 ContactUsRouter.put("/:_id", verifyAdmin, updateRecord)
